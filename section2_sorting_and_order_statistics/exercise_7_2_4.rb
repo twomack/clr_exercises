@@ -49,10 +49,9 @@ end
 def exchange(a, i, largest)
 	# exchange() exchanges the values of the elements at indexes i and largest
 	# of array a.
-	a_i = a[i]
-	a_largest = a[largest]
-	a[i] = a_largest
-	a[largest] = a_i
+	tmp = a[i]
+	a[i] = a[largest]
+	a[largest] = tmp
 end
 
 
