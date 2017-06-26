@@ -15,7 +15,7 @@ def print_array_as_heap(array)
     # This will not work for large heaps. This is mostly meant for small debug.
     pow_2 = 0 #keeps track of heap level
     pow_2_index = 0 #index inside the heap level
-    for i in 0...array.length
+    (0...array.length).each do |i|
         print array[i],'(',i,')', ' ' #array_element(i)
         if pow_2_index == 2**pow_2-1 #decide if we need to incres heap level 
             print "\n"
