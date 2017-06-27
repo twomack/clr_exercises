@@ -54,7 +54,6 @@ def exchange(a, i, largest)
     a[largest] = tmp
 end
 
-
 def heapify_recursive(a, i)
     # heapify_recursive() is a recursive implementation of the heapify
     # algorithm. This is an implementation of the algorithm psuedocode in
@@ -66,7 +65,8 @@ def heapify_recursive(a, i)
     largest = i #ASSUMPTION: i is less than array.length
     if (l < heap_size(a)) && (a[l] > a[i])
         largest = l
-    elsif (r < heap_size(a)) && (a[r] > a[largest])
+    end
+    if (r < heap_size(a)) && (a[r] > a[largest])
         largest = r
     end
     
@@ -88,7 +88,8 @@ def heapify_iterative(a, i)
         largest = i
         if (l < heap_size(a)) && (a[l] > a[i])
             largest = l
-        elsif (r < heap_size(a)) && (a[r] > a[largest])
+        end
+        if (r < heap_size(a)) && (a[r] > a[largest])
             largest = r
         end
 
@@ -111,7 +112,7 @@ heapify_recursive(test_array_recursive, 1)
 puts "After:"
 print_array_as_heap(test_array_recursive)
 
-#  Using iterative function
+# Using iterative function
 puts "\nUsing iterative heapify function..."
 test_array_iterative = [16, 4, 10, 14, 7, 9, 3, 2, 8, 1]
 puts "Before:"
