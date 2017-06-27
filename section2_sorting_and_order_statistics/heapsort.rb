@@ -84,9 +84,7 @@ def build_heap(a)
     # psuedocode in section 7.3
     heap_size = a.length #this is not necessary; just to match pseudocode
     ((heap_size-1)/2).downto(0) do |i| #start at highest index non-leaf node
-        puts i
         heapify(a, i)
-        print_array_as_heap(a)
     end
 end
 
