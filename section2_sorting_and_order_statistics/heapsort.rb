@@ -1,6 +1,10 @@
 #!/usr/bin/ruby -w
 
-def print_array_as_heap(array)
+#TODO - this should be turned into an object with a heap_size attribute;
+#       do this for priority queue imlementation
+$heap_size = 0
+
+def print_array_as_heap(array, end_index)
     # print_array_as_heap() is a crude funcion for printing an array like a 
     # heap. Each element will be printed with its index in the array, like so:
     #
@@ -15,7 +19,7 @@ def print_array_as_heap(array)
     # This will not work for large heaps. This is mostly meant for small debug.
     pow_2 = 0 #keeps track of heap level
     pow_2_index = 0 #index inside the heap level
-    (0...array.length).each do |i|
+    (0...end_index).each do |i|
         print array[i],'(',i,')', ' ' #array_element(i)
         if pow_2_index == 2**pow_2-1 #decide if we need to incres heap level 
             print "\n"
@@ -43,7 +47,7 @@ end
 def heap_size(a)
     # heap_size just returns the length of the array (which is not quite right,
     # but a simplification). We use a function here to resemble the psuedocode.
-    return a.length
+    return $heap_size
 end
 
 def exchange(a, i, j)
@@ -82,17 +86,47 @@ def build_heap(a)
     # build_heap() is a bottoms-up procedure to create a heap out of an array
     # by running the heapify algorithm. This is an implementation of the 
     # psuedocode in section 7.3
-    heap_size = a.length #this is not necessary; just to match pseudocode
-    ((heap_size-1)/2).downto(0) do |i| #start at highest index non-leaf node
+    $heap_size = a.length
+    (($heap_size-1)/2).downto(0) do |i| #start at highest index non-leaf node
         heapify(a, i)
     end
 end
 
+def heapsort(a)
+    # heapsort() will sort the input array in place
+    build_heap(a)
+    (a.length-1).downto(1) do |i|
+        exchange(a, 0, i)
+        $heap_size -= 1
+        heapify(a, 0)
+    end
+end
+
 # Figure 7-3
-puts "build_heap Example 7.3:"
-test_array_bh = [4, 1, 3, 2, 16, 9, 10, 14, 8, 7]
-puts "Before:"
-print_array_as_heap(test_array_bh)
-build_heap(test_array_bh)
-puts "After:"
-print_array_as_heap(test_array_bh)
+# puts "build_heap Example 7.3:"
+# test_array_bh = [4, 1, 3, 2, 16, 9, 10, 14, 8, 7]
+# puts "Before:"
+# print_array_as_heap(test_array_bh, test_array_bh.length)
+# build_heap(test_array_bh)
+# puts "After:"
+# print_array_as_heap(test_array_bh, test_array_bh.length)
+
+
+def generate_rand_array(array_length, end_num, begin_num=1)
+    return Array.new(array_length) { rand(begin_num..end_num) }        
+end
+
+def print_array(array)
+    puts array.inspect
+end
+
+def run_test(length, end_range)
+    puts "BEGIN TEST =========================================================="
+    array_to_be_sorted = generate_rand_array(length, end_range)
+    print_array(array_to_be_sorted)
+    heapsort(array_to_be_sorted)
+    print_array(array_to_be_sorted)
+end
+
+# Testing my method
+run_test(10, 25)
