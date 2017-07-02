@@ -111,7 +111,6 @@ end
 # puts "After:"
 # print_array_as_heap(test_array_bh, test_array_bh.length)
 
-
 def generate_rand_array(array_length, end_num, begin_num=1)
     return Array.new(array_length) { rand(begin_num..end_num) }        
 end
@@ -128,5 +127,5 @@ def run_test(length, end_range)
     print_array(array_to_be_sorted)
 end
 
-# Testing my method
+# Testing my function
 run_test(10, 25)
