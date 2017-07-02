@@ -83,7 +83,8 @@ class Heap
 
   def delete(i)
     # delete() - deletes the element at index i and readjusts the heap to
-    #            account for missing element
+    #            account for missing element in O(lg(n)). Implemented as part of
+    #            exercise 7.5-5
     if i >= @heap_size
       raise IndexError
     end
