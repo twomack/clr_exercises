@@ -15,7 +15,7 @@ class Heap
     @heap_array = a
     @heap_size = @heap_array.length
     ((@heap_size-1)/2).downto(0) do |i|
-        heapify(i)
+      heapify(i)
     end
   end
 
@@ -77,7 +77,7 @@ class Heap
     #                  heap_structure accordingly in O(lg(n)) time. Implemented
     #                  as part of exercise 7.5-4
     if @heap_array[i] < k #only excecute if k is larger
-        sift(i, k) #move k up tree to its proper position in heap
+      sift(i, k) #move k up tree to its proper position in heap
     end
   end
 
@@ -124,16 +124,16 @@ class Heap
     pow_2 = 0 #keeps track of heap level
     pow_2_index = 0 #index inside the heap level
     (0...@heap_size).each do |i|
-        print @heap_array[i],'(',i,')', ' ' #array_element(i)
-        if pow_2_index == 2**pow_2-1 #decide if we need to incres heap level 
-            if i < (@heap_size-1)
-              print "\n"
-            end
-            pow_2_index = 0
-            pow_2 += 1 
-        else
-            pow_2_index += 1
+      print @heap_array[i],'(',i,')', ' ' #array_element(i)
+      if pow_2_index == 2**pow_2-1 #decide if we need to incres heap level 
+        if i < (@heap_size-1)
+          print "\n"
         end
+        pow_2_index = 0
+        pow_2 += 1 
+      else
+        pow_2_index += 1
+      end
     end
     print "\n"
   end
