@@ -1,6 +1,7 @@
 class Heap
 
-  attr_accessor :heap_size, :heap_array
+  attr_accessor :heap_size
+  attr_reader :heap_array
 
   def initialize(a)
     # initialize() - the constructor method is an implementation of the
@@ -138,15 +139,13 @@ class Heap
     print "\n"
   end
 
-  protected 
+  private #=====================================================================
 
   def val(heap_element)
     # heap_element() - protected helper method meant to be overriden by child
     #                  classes
     return heap_element
   end
-
-  private #=====================================================================
 
   def heap_pop()
     # heap_pop() - private helper method that pops the last element off the
