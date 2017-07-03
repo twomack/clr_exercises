@@ -29,10 +29,10 @@ class Heap
 
       # Calculate larget child node
       largest = i
-      if (l < @heap_size) && (@heap_array[l] > @heap_array[i])
+      if (l < @heap_size) && (val(@heap_array[l]) > val(@heap_array[i]))
         largest = l
       end
-      if (r < @heap_size) && (@heap_array[r] > @heap_array[largest])
+      if (r < @heap_size) && (val(@heap_array[r]) > val(@heap_array[largest]))
         largest = r
       end
 
@@ -76,7 +76,7 @@ class Heap
     # increase_key() - sets heap_array[i] to max(heap_array[i], k) and updates
     #                  heap_structure accordingly in O(lg(n)) time. Implemented
     #                  as part of exercise 7.5-4
-    if @heap_array[i] < k #only excecute if k is larger
+    if val(@heap_array[i]) < val(k) #only excecute if k is larger
       sift(i, k) #move k up tree to its proper position in heap
     end
   end
@@ -91,7 +91,7 @@ class Heap
     last = heap_pop()
     if i < heap_size #if we deleted last element, return immediately
       # Determine if new value needs to move up heap
-      if (i > 0) && (last > @heap_array[parent(i)])
+      if (i > 0) && (val(last) > val(@heap_array[parent(i)]))
         sift(i, last)
       else #push element down the heap
         @heap_array[i] = last
@@ -138,6 +138,14 @@ class Heap
     print "\n"
   end
 
+  protected 
+
+  def val(heap_element)
+    # heap_element() - protected helper method meant to be overriden by child
+    #                  classes
+    return heap_element
+  end
+
   private #=====================================================================
 
   def heap_pop()
@@ -147,7 +155,7 @@ class Heap
     return @heap_array.pop
   end
 
-    def heap_push(k)
+  def heap_push(k)
     # heap_push() - private helper method that pushes k to end of array_heap
     #               and increments heap_size
     @heap_size += 1
@@ -157,7 +165,7 @@ class Heap
   def sift(i, k)
     # sift() - private helper method that sifts a value k to where its proper
     #          position in heap sub-tree is between the root and node i
-    while (i > 0) && (@heap_array[parent(i)] < k) do
+    while (i > 0) && (val(@heap_array[parent(i)]) < val(k)) do
       @heap_array[i] = @heap_array[parent(i)] #move parent value down heap
       i = parent(i)
     end
