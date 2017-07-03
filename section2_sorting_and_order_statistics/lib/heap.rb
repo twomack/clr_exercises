@@ -139,7 +139,7 @@ class Heap
     print "\n"
   end
 
-  private #=====================================================================
+  private
 
   def val(heap_element)
     # heap_element() - protected helper method meant to be overriden by child
