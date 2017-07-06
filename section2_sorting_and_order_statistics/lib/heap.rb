@@ -142,7 +142,7 @@ class Heap
   private
 
   def val(heap_element)
-    # heap_element() - protected helper method meant to be overriden by child
+    # heap_element() - private helper method meant to be overriden by child
     #                  classes
     return heap_element
   end

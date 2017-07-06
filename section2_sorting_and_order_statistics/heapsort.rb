@@ -30,4 +30,3 @@ end
 
 # Testing my function
 run_test(10, 25)
-
