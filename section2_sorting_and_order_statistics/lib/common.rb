@@ -9,4 +9,9 @@ module Common
     a[i] = a[j]
     a[j] = tmp
   end
+
+  def random_range(a, b)
+    # random_range() - method that returns random # between a and b, inclusive
+    return rand(b-a+1)+a
+  end
 end

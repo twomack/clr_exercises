@@ -32,4 +32,21 @@ def partition(a, p_index, r_index)
   end
 end
 
+def randomized_quicksort(a, p_index=0, r_index=a.length-1)
+  # Implementation of randomized quicksort psuedocode from section 8.3
+  if p_index < r_index
+    q_index = randomized_partition(a, p_index, r_index)
+    randomized_quicksort(a, p_index, q_index)
+    randomized_quicksort(a, q_index+1, r_index)
+  end
+end
+
+def randomized_partition(a, p_index, r_index)
+  # Implementation of randomized partition psuedocode from section 8.3
+  i = Common.random_range(p_index, r_index) #random numer p to r, inclusive
+  Common.exchange(a, p_index, i)
+  return partition(a, p_index, r_index)
+end
+
 TestSort.run_test(method(:quicksort), 15, 50)
+TestSort.run_test(method(:randomized_quicksort), 15, 50)
